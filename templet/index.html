@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Dashboard</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <h2 class="brand">Manage</h2>
+            <nav class="nav">
+                <button class="nav-link active" type="button" data-section="dashboard">Dashboard</button>
+                <button class="nav-link" type="button" data-section="students">Students</button>
+                <button class="nav-link" type="button" data-section="courses">Courses</button>
+                <button class="nav-link" type="button" data-section="reports">Reports</button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow" id="pageEyebrow">Overview</p>
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+                <button class="profile" type="button" aria-label="Open profile">A</button>
+            </header>
+            <p class="notice" id="notice" aria-live="polite"></p>
+
+            <section class="page-section active" id="dashboard">
+            <div class="cards" aria-label="Dashboard statistics">
+                <article class="card">
+                    <p>Total Students</p>
+                    <strong>248</strong>
+                </article>
+                <article class="card">
+                    <p>Active Courses</p>
+                    <strong>12</strong>
+                </article>
+                <article class="card">
+                    <p>Teachers</p>
+                    <strong>18</strong>
+                </article>
+                <article class="card">
+                    <p>Attendance</p>
+                    <strong>92%</strong>
+                </article>
+            </div>
+
+            <section class="table-section">
+                <div class="section-heading">
+                    <h2>Recent Students</h2>
+                    <button class="add-button" type="button" data-open-modal>Add Student</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Course</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentStudentsBody">
+                            <tr>
+                                <td>John Smith</td>
+                                <td>Web Development</td>
+                                <td><span class="status">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sarah Wilson</td>
+                                <td>Data Science</td>
+                                <td><span class="status">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>David Brown</td>
+                                <td>UI/UX Design</td>
+                                <td><span class="status">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Emma Taylor</td>
+                                <td>Graphic Design</td>
+                                <td><span class="status">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Michael Lee</td>
+                                <td>Python Basics</td>
+                                <td><span class="status inactive">Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td>Olivia Martin</td>
+                                <td>Business Studies</td>
+                                <td><span class="status">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="bottom-grid">
+                <div class="info-section">
+                    <h2>Recent Activity</h2>
+                    <ul class="activity-list">
+                        <li>
+                            <span class="activity-dot"></span>
+                            <div>
+                                <strong>Emma Taylor joined Graphic Design</strong>
+                                <p>Today, 10:30 AM</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="activity-dot"></span>
+                            <div>
+                                <strong>Web Development course updated</strong>
+                                <p>Yesterday, 4:15 PM</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="activity-dot"></span>
+                            <div>
+                                <strong>Monthly report is ready</strong>
+                                <p>Yesterday, 9:00 AM</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h2>Courses</h2>
+                    <div class="course-row">
+                        <span>Web Development</span>
+                        <strong>74%</strong>
+                    </div>
+                    <div class="progress"><span style="width: 74%"></span></div>
+                    <div class="course-row">
+                        <span>Data Science</span>
+                        <strong>58%</strong>
+                    </div>
+                    <div class="progress"><span style="width: 58%"></span></div>
+                    <div class="course-row">
+                        <span>UI/UX Design</span>
+                        <strong>86%</strong>
+                    </div>
+                    <div class="progress"><span style="width: 86%"></span></div>
+                </div>
+            </section>
+            </section>
+
+            <section class="page-section" id="students">
+                <section class="table-section">
+                    <div class="section-heading student-heading">
+                        <h2>All Students</h2>
+                        <div class="heading-actions">
+                            <input class="search-input" id="studentSearch" type="search" placeholder="Search students">
+                            <button class="add-button" type="button" data-open-modal>Add Student</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="studentsTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Course</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsBody">
+                                <tr>
+                                    <td>John Smith</td><td>Web Development</td><td>john@example.com</td>
+                                    <td><span class="status">Active</span></td><td><button class="icon-button" type="button">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Wilson</td><td>Data Science</td><td>sarah@example.com</td>
+                                    <td><span class="status">Active</span></td><td><button class="icon-button" type="button">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>David Brown</td><td>UI/UX Design</td><td>david@example.com</td>
+                                    <td><span class="status">Active</span></td><td><button class="icon-button" type="button">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Emma Taylor</td><td>Graphic Design</td><td>emma@example.com</td>
+                                    <td><span class="status">Active</span></td><td><button class="icon-button" type="button">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Lee</td><td>Python Basics</td><td>michael@example.com</td>
+                                    <td><span class="status inactive">Inactive</span></td><td><button class="icon-button" type="button">Edit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+
+            <section class="page-section" id="courses">
+                <div class="section-heading">
+                    <h2>Available Courses</h2>
+                    <button class="add-button" type="button" data-open-course>Add Course</button>
+                </div>
+                <div class="course-grid">
+                    <article class="course-card">
+                        <div class="course-icon">WD</div>
+                        <h3>Web Development</h3>
+                        <p>24 students</p>
+                        <button class="secondary-button" type="button">View Course</button>
+                    </article>
+                    <article class="course-card">
+                        <div class="course-icon">DS</div>
+                        <h3>Data Science</h3>
+                        <p>18 students</p>
+                        <button class="secondary-button" type="button">View Course</button>
+                    </article>
+                    <article class="course-card">
+                        <div class="course-icon">UX</div>
+                        <h3>UI/UX Design</h3>
+                        <p>16 students</p>
+                        <button class="secondary-button" type="button">View Course</button>
+                    </article>
+                    <article class="course-card">
+                        <div class="course-icon">GD</div>
+                        <h3>Graphic Design</h3>
+                        <p>21 students</p>
+                        <button class="secondary-button" type="button">View Course</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="page-section" id="reports">
+                <div class="cards report-cards">
+                    <article class="card"><p>This Month</p><strong>$12,480</strong></article>
+                    <article class="card"><p>New Students</p><strong>32</strong></article>
+                    <article class="card"><p>Completed Courses</p><strong>45</strong></article>
+                </div>
+                <section class="table-section">
+                    <div class="section-heading">
+                        <h2>Recent Reports</h2>
+                        <button class="add-button" type="button" id="downloadReport">Download</button>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Report</th><th>Period</th><th>Generated</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>Monthly Attendance</td><td>November 2026</td><td>Nov 25, 2026</td><td><span class="status">Ready</span></td></tr>
+                                <tr><td>Student Performance</td><td>October 2026</td><td>Nov 1, 2026</td><td><span class="status">Ready</span></td></tr>
+                                <tr><td>Course Progress</td><td>October 2026</td><td>Nov 1, 2026</td><td><span class="status">Ready</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal" id="studentModal" aria-hidden="true">
+        <div class="modal-box">
+            <div class="section-heading">
+                <h2>Add Student</h2>
+                <button class="close-button" type="button" data-close-modal aria-label="Close">&times;</button>
+            </div>
+            <form id="studentForm">
+                <label>Student name<input name="name" type="text" required></label>
+                <label>Course<select name="course" required>
+                    <option value="">Select course</option>
+                    <option>Web Development</option>
+                    <option>Data Science</option>
+                    <option>UI/UX Design</option>
+                    <option>Graphic Design</option>
+                    <option>Python Basics</option>
+                </select></label>
+                <label>Email<input name="email" type="email" required></label>
+                <button class="add-button modal-submit" type="submit">Add Student</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="courseModal" aria-hidden="true">
+        <div class="modal-box">
+            <div class="section-heading">
+                <h2>Add Course</h2>
+                <button class="close-button" type="button" data-close-course aria-label="Close">&times;</button>
+            </div>
+            <form id="courseForm">
+                <label>Course name<input name="courseName" type="text" required></label>
+                <label>Students<select name="students"><option>10 students</option><option>20 students</option><option>30 students</option></select></label>
+                <button class="add-button modal-submit" type="submit">Add Course</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const store = {
+            students: "student-dashboard-students",
+            courses: "student-dashboard-courses"
+        };
+        const studentModal = document.getElementById("studentModal");
+        const courseModal = document.getElementById("courseModal");
+        const studentForm = document.getElementById("studentForm");
+        const courseForm = document.getElementById("courseForm");
+        const notice = document.getElementById("notice");
+        let students = [];
+        let courses = [];
+        let editingStudentId = null;
+        let editingCourseId = null;
+
+        function showNotice(message) {
+            notice.textContent = message;
+            window.clearTimeout(showNotice.timer);
+            showNotice.timer = window.setTimeout(() => notice.textContent = "", 3500);
+        }
+
+        function readSaved(key, fallback) {
+            try {
+                const saved = localStorage.getItem(key);
+                return saved ? JSON.parse(saved) : fallback;
+            } catch (error) {
+                showNotice("Could not read saved data in this browser.");
+                return fallback;
+            }
+        }
+
+        function save(key, records) {
+            try {
+                localStorage.setItem(key, JSON.stringify(records));
+                return true;
+            } catch (error) {
+                showNotice("Could not save changes. Check browser storage settings.");
+                return false;
+            }
+        }
+
+        function makeAction(label, action, id) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = action === "delete" ? "icon-button delete-button" : "icon-button";
+            button.textContent = label;
+            button.dataset.action = action;
+            button.dataset.id = id;
+            return button;
+        }
+
+        function renderStudents() {
+            const body = document.getElementById("studentsBody");
+            const recentBody = document.getElementById("recentStudentsBody");
+            const search = document.getElementById("studentSearch").value.toLowerCase();
+            body.replaceChildren();
+            recentBody.replaceChildren();
+
+            students.filter(student =>
+                `${student.name} ${student.course} ${student.email}`.toLowerCase().includes(search)
+            ).forEach(student => {
+                const row = document.createElement("tr");
+                [student.name, student.course, student.email].forEach(value => {
+                    const cell = document.createElement("td");
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+                const statusCell = document.createElement("td");
+                const status = document.createElement("span");
+                status.className = `status${student.status === "Inactive" ? " inactive" : ""}`;
+                status.textContent = student.status;
+                statusCell.appendChild(status);
+                row.appendChild(statusCell);
+                const actions = document.createElement("td");
+                actions.append(makeAction("Edit", "edit-student", student.id), makeAction("Delete", "delete-student", student.id));
+                row.appendChild(actions);
+                body.appendChild(row);
+            });
+
+            students.slice(-6).reverse().forEach(student => {
+                const row = document.createElement("tr");
+                [student.name, student.course].forEach(value => {
+                    const cell = document.createElement("td");
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+                const statusCell = document.createElement("td");
+                const status = document.createElement("span");
+                status.className = `status${student.status === "Inactive" ? " inactive" : ""}`;
+                status.textContent = student.status;
+                statusCell.appendChild(status);
+                row.appendChild(statusCell);
+                recentBody.appendChild(row);
+            });
+
+            document.querySelector("#dashboard .card strong").textContent = students.length;
+        }
+
+        function renderCourses() {
+            const grid = document.querySelector(".course-grid");
+            grid.replaceChildren();
+            courses.forEach(course => {
+                const card = document.createElement("article");
+                card.className = "course-card";
+                const icon = document.createElement("div");
+                icon.className = "course-icon";
+                icon.textContent = course.name.split(/\s+/).map(word => word[0]).join("").slice(0, 2).toUpperCase();
+                const title = document.createElement("h3");
+                title.textContent = course.name;
+                const count = document.createElement("p");
+                count.textContent = course.students;
+                card.append(icon, title, count, makeAction("Edit", "edit-course", course.id), makeAction("Delete", "delete-course", course.id));
+                grid.appendChild(card);
+            });
+        }
+
+        function refreshCourseOptions() {
+            const select = studentForm.elements.course;
+            select.replaceChildren(new Option("Select course", ""));
+            const names = new Set([
+                ...courses.map(course => course.name),
+                ...students.map(student => student.course)
+            ]);
+            names.forEach(name => select.add(new Option(name, name)));
+        }
+
+        const sectionTitles = {
+            dashboard: ["Overview", "Dashboard"],
+            students: ["Management", "Students"],
+            courses: ["Management", "Courses"],
+            reports: ["Management", "Reports"]
+        };
+        document.querySelectorAll("[data-section]").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll("[data-section]").forEach(item => item.classList.remove("active"));
+                document.querySelectorAll(".page-section").forEach(section => section.classList.remove("active"));
+                button.classList.add("active");
+                document.getElementById(button.dataset.section).classList.add("active");
+                document.getElementById("pageEyebrow").textContent = sectionTitles[button.dataset.section][0];
+                document.getElementById("pageTitle").textContent = sectionTitles[button.dataset.section][1];
+            });
+        });
+        const requestedSection = new URLSearchParams(window.location.search).get("section");
+        if (Object.prototype.hasOwnProperty.call(sectionTitles, requestedSection)) {
+            document.querySelector(`[data-section="${requestedSection}"]`).click();
+        }
+
+        document.querySelectorAll("[data-open-modal]").forEach(button => {
+            button.addEventListener("click", () => {
+                editingStudentId = null;
+                studentForm.reset();
+                document.querySelector("#studentModal h2").textContent = "Add Student";
+                document.querySelector("#studentModal .modal-submit").textContent = "Add Student";
+                studentModal.classList.add("open");
+                studentModal.setAttribute("aria-hidden", "false");
+            });
+        });
+        function closeStudentModal() {
+            studentModal.classList.remove("open");
+            studentModal.setAttribute("aria-hidden", "true");
+            editingStudentId = null;
+        }
+        document.querySelector("[data-close-modal]").addEventListener("click", closeStudentModal);
+
+        studentForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const record = {
+                id: editingStudentId || String(Date.now()),
+                name: studentForm.elements.name.value.trim(),
+                course: studentForm.elements.course.value,
+                email: studentForm.elements.email.value.trim(),
+                status: editingStudentId ? students.find(student => student.id === editingStudentId).status : "Active"
+            };
+            const previous = students;
+            students = editingStudentId
+                ? students.map(student => student.id === editingStudentId ? record : student)
+                : [...students, record];
+            if (save(store.students, students)) {
+                renderStudents();
+                showNotice(editingStudentId ? "Student updated." : "Student added.");
+                closeStudentModal();
+                studentForm.reset();
+            } else {
+                students = previous;
+            }
+        });
+
+        document.getElementById("studentsTable").addEventListener("click", event => {
+            const button = event.target.closest("[data-action]");
+            if (!button) return;
+            const student = students.find(item => item.id === button.dataset.id);
+            if (!student) return;
+            if (button.dataset.action === "delete-student") {
+                if (!window.confirm(`Delete ${student.name}?`)) return;
+                const previous = students;
+                students = students.filter(item => item.id !== student.id);
+                if (save(store.students, students)) {
+                    renderStudents();
+                    showNotice("Student deleted.");
+                } else students = previous;
+                return;
+            }
+            editingStudentId = student.id;
+            studentForm.elements.name.value = student.name;
+            studentForm.elements.course.value = student.course;
+            studentForm.elements.email.value = student.email;
+            document.querySelector("#studentModal h2").textContent = "Edit Student";
+            document.querySelector("#studentModal .modal-submit").textContent = "Save Changes";
+            studentModal.classList.add("open");
+            studentModal.setAttribute("aria-hidden", "false");
+        });
+
+        document.getElementById("studentSearch").addEventListener("input", renderStudents);
+        document.querySelector("[data-open-course]").addEventListener("click", () => {
+            editingCourseId = null;
+            courseForm.reset();
+            document.querySelector("#courseModal h2").textContent = "Add Course";
+            document.querySelector("#courseModal .modal-submit").textContent = "Add Course";
+            courseModal.classList.add("open");
+        });
+        document.querySelector("[data-close-course]").addEventListener("click", () => {
+            courseModal.classList.remove("open");
+            editingCourseId = null;
+        });
+
+        courseForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const record = {
+                id: editingCourseId || String(Date.now()),
+                name: courseForm.elements.courseName.value.trim(),
+                students: courseForm.elements.students.value
+            };
+            const previous = courses;
+            courses = editingCourseId
+                ? courses.map(course => course.id === editingCourseId ? record : course)
+                : [...courses, record];
+            if (save(store.courses, courses)) {
+                renderCourses();
+                refreshCourseOptions();
+                showNotice(editingCourseId ? "Course updated." : "Course added.");
+                courseModal.classList.remove("open");
+                courseForm.reset();
+                editingCourseId = null;
+            } else courses = previous;
+        });
+
+        document.querySelector(".course-grid").addEventListener("click", event => {
+            const button = event.target.closest("[data-action]");
+            if (!button) return;
+            const course = courses.find(item => item.id === button.dataset.id);
+            if (!course) return;
+            if (button.dataset.action === "delete-course") {
+                if (!window.confirm(`Delete ${course.name}?`)) return;
+                const previous = courses;
+                courses = courses.filter(item => item.id !== course.id);
+                if (save(store.courses, courses)) {
+                    renderCourses();
+                    refreshCourseOptions();
+                    showNotice("Course deleted.");
+                } else courses = previous;
+                return;
+            }
+            editingCourseId = course.id;
+            courseForm.elements.courseName.value = course.name;
+            courseForm.elements.students.value = course.students;
+            document.querySelector("#courseModal h2").textContent = "Edit Course";
+            document.querySelector("#courseModal .modal-submit").textContent = "Save Changes";
+            courseModal.classList.add("open");
+        });
+
+        document.getElementById("downloadReport").addEventListener("click", () => {
+            const rows = [["Report", "Period", "Generated", "Status"], ["Monthly Attendance", "November 2026", "Nov 25, 2026", "Ready"], ["Student Performance", "October 2026", "Nov 1, 2026", "Ready"], ["Course Progress", "October 2026", "Nov 1, 2026", "Ready"]];
+            const csv = rows.map(row => row.join(",")).join("\n");
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+            link.download = "student-management-report.csv";
+            link.click();
+            URL.revokeObjectURL(link.href);
+        });
+
+        function seedStudents() {
+            return Array.from(document.querySelectorAll("#studentsBody tr")).map((row, index) => {
+                const cells = row.querySelectorAll("td");
+                return {
+                    id: `seed-student-${index}`,
+                    name: cells[0].textContent.trim(),
+                    course: cells[1].textContent.trim(),
+                    email: cells[2].textContent.trim(),
+                    status: cells[3].textContent.trim()
+                };
+            });
+        }
+        function seedCourses() {
+            return Array.from(document.querySelectorAll(".course-grid .course-card")).map((card, index) => ({
+                id: `seed-course-${index}`,
+                name: card.querySelector("h3").textContent.trim(),
+                students: card.querySelector("p").textContent.trim()
+            }));
+        }
+        students = readSaved(store.students, seedStudents());
+        courses = readSaved(store.courses, seedCourses());
+        refreshCourseOptions();
+        renderStudents();
+        renderCourses();
+    </script>
+</body>
+</html>
